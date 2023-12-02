@@ -9,9 +9,19 @@ import SwiftUI
 
 @main
 struct JustyMusicApp: App {
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            RouterView {
+                Greeting()
+            }
         }
     }
+    
+}
+
+#Preview {
+  RouterView {
+      Greeting()
+  }
 }

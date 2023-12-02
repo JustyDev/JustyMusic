@@ -7,16 +7,24 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EACBED9B2B1B9C7C003C7890 /* Greeting.swift in Sources */ = {isa = PBXBuildFile; fileRef = EACBED9A2B1B9C7C003C7890 /* Greeting.swift */; };
+		EACBEDA02B1B9CF1003C7890 /* BigButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EACBED9F2B1B9CF1003C7890 /* BigButton.swift */; };
+		EACBEDA62B1BBA0A003C7890 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = EACBEDA52B1BBA0A003C7890 /* Router.swift */; };
+		EACBEDA82B1BBC06003C7890 /* RouterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EACBEDA72B1BBC06003C7890 /* RouterView.swift */; };
+		EACBEDAB2B1BBD9B003C7890 /* Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = EACBEDAA2B1BBD9B003C7890 /* Auth.swift */; };
 		EAFDE0A32B1B8CFE00A4BF7B /* JustyMusicApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFDE0A22B1B8CFE00A4BF7B /* JustyMusicApp.swift */; };
-		EAFDE0A52B1B8CFE00A4BF7B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFDE0A42B1B8CFE00A4BF7B /* ContentView.swift */; };
 		EAFDE0A72B1B8CFF00A4BF7B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EAFDE0A62B1B8CFF00A4BF7B /* Assets.xcassets */; };
 		EAFDE0AA2B1B8CFF00A4BF7B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EAFDE0A92B1B8CFF00A4BF7B /* Preview Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EACBED9A2B1B9C7C003C7890 /* Greeting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Greeting.swift; sourceTree = "<group>"; };
+		EACBED9F2B1B9CF1003C7890 /* BigButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigButton.swift; sourceTree = "<group>"; };
+		EACBEDA52B1BBA0A003C7890 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		EACBEDA72B1BBC06003C7890 /* RouterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterView.swift; sourceTree = "<group>"; };
+		EACBEDAA2B1BBD9B003C7890 /* Auth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Auth.swift; sourceTree = "<group>"; };
 		EAFDE09F2B1B8CFE00A4BF7B /* JustyMusic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JustyMusic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAFDE0A22B1B8CFE00A4BF7B /* JustyMusicApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JustyMusicApp.swift; sourceTree = "<group>"; };
-		EAFDE0A42B1B8CFE00A4BF7B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		EAFDE0A62B1B8CFF00A4BF7B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EAFDE0A92B1B8CFF00A4BF7B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -32,6 +40,47 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EACBED982B1B9C52003C7890 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				EACBEDA92B1BBD8A003C7890 /* Auth */,
+				EACBED992B1B9C5C003C7890 /* Greeting */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		EACBED992B1B9C5C003C7890 /* Greeting */ = {
+			isa = PBXGroup;
+			children = (
+				EACBED9A2B1B9C7C003C7890 /* Greeting.swift */,
+			);
+			path = Greeting;
+			sourceTree = "<group>";
+		};
+		EACBED9C2B1B9CCB003C7890 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				EACBED9E2B1B9CDB003C7890 /* Atoms */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		EACBED9E2B1B9CDB003C7890 /* Atoms */ = {
+			isa = PBXGroup;
+			children = (
+				EACBED9F2B1B9CF1003C7890 /* BigButton.swift */,
+			);
+			path = Atoms;
+			sourceTree = "<group>";
+		};
+		EACBEDA92B1BBD8A003C7890 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				EACBEDAA2B1BBD9B003C7890 /* Auth.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
 		EAFDE0962B1B8CFE00A4BF7B = {
 			isa = PBXGroup;
 			children = (
@@ -51,20 +100,39 @@
 		EAFDE0A12B1B8CFE00A4BF7B /* JustyMusic */ = {
 			isa = PBXGroup;
 			children = (
-				EAFDE0A22B1B8CFE00A4BF7B /* JustyMusicApp.swift */,
-				EAFDE0A42B1B8CFE00A4BF7B /* ContentView.swift */,
-				EAFDE0A62B1B8CFF00A4BF7B /* Assets.xcassets */,
-				EAFDE0A82B1B8CFF00A4BF7B /* Preview Content */,
+				EAFDE0B12B1B8DF500A4BF7B /* App */,
+				EAFDE0B02B1B8D5300A4BF7B /* Resources */,
 			);
 			path = JustyMusic;
 			sourceTree = "<group>";
 		};
-		EAFDE0A82B1B8CFF00A4BF7B /* Preview Content */ = {
+		EAFDE0A82B1B8CFF00A4BF7B /* PreviewContent */ = {
 			isa = PBXGroup;
 			children = (
 				EAFDE0A92B1B8CFF00A4BF7B /* Preview Assets.xcassets */,
 			);
-			path = "Preview Content";
+			path = PreviewContent;
+			sourceTree = "<group>";
+		};
+		EAFDE0B02B1B8D5300A4BF7B /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				EAFDE0A62B1B8CFF00A4BF7B /* Assets.xcassets */,
+				EAFDE0A82B1B8CFF00A4BF7B /* PreviewContent */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		EAFDE0B12B1B8DF500A4BF7B /* App */ = {
+			isa = PBXGroup;
+			children = (
+				EACBED9C2B1B9CCB003C7890 /* UI */,
+				EACBED982B1B9C52003C7890 /* Scenes */,
+				EAFDE0A22B1B8CFE00A4BF7B /* JustyMusicApp.swift */,
+				EACBEDA52B1BBA0A003C7890 /* Router.swift */,
+				EACBEDA72B1BBC06003C7890 /* RouterView.swift */,
+			);
+			path = App;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -93,7 +161,7 @@
 		EAFDE0972B1B8CFE00A4BF7B /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				BuildIndependentTargetsInParallel = 1;
+				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 1500;
 				LastUpgradeCheck = 1500;
 				TargetAttributes = {
@@ -104,11 +172,11 @@
 			};
 			buildConfigurationList = EAFDE09A2B1B8CFE00A4BF7B /* Build configuration list for PBXProject "JustyMusic" */;
 			compatibilityVersion = "Xcode 14.0";
-			developmentRegion = en;
+			developmentRegion = ru;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
-				Base,
+				ru,
 			);
 			mainGroup = EAFDE0962B1B8CFE00A4BF7B;
 			productRefGroup = EAFDE0A02B1B8CFE00A4BF7B /* Products */;
@@ -137,7 +205,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EAFDE0A52B1B8CFE00A4BF7B /* ContentView.swift in Sources */,
+				EACBEDA02B1B9CF1003C7890 /* BigButton.swift in Sources */,
+				EACBED9B2B1B9C7C003C7890 /* Greeting.swift in Sources */,
+				EACBEDA82B1BBC06003C7890 /* RouterView.swift in Sources */,
+				EACBEDAB2B1BBD9B003C7890 /* Auth.swift in Sources */,
+				EACBEDA62B1BBA0A003C7890 /* Router.swift in Sources */,
 				EAFDE0A32B1B8CFE00A4BF7B /* JustyMusicApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -271,15 +343,16 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"JustyMusic/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"JustyMusic/Resources/PreviewContent\"";
 				DEVELOPMENT_TEAM = SC737BGZU5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleDarkContent;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Dark;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -287,9 +360,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = ru.justydev.JustyMusic;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -300,15 +376,16 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"JustyMusic/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"JustyMusic/Resources/PreviewContent\"";
 				DEVELOPMENT_TEAM = SC737BGZU5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleDarkContent;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Dark;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -316,9 +393,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = ru.justydev.JustyMusic;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
