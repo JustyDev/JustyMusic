@@ -37,6 +37,7 @@ struct BigButton: View {
   
   var backgroundColor: Color
   var textColor: Color
+  var loading: Bool
   
   private let title: String
   private let action: () -> Void
@@ -44,15 +45,20 @@ struct BigButton: View {
   // It would be nice to make this into a binding.
   private let disabled: Bool
   
-  init(title: String,
-       disabled: Bool = false,
-       backgroundColor: Color = Color.green,
-       textColor: Color = Color.white,
-       action: @escaping () -> Void
+  @State private var preloaderState: Bool = false
+  
+  init(
+    title: String,
+    disabled: Bool = false,
+    loading: Bool = false,
+    backgroundColor: Color = Color.green,
+    textColor: Color = Color.white,
+    action: @escaping () -> Void
   ) {
     self.backgroundColor = backgroundColor
     self.textColor = textColor
     self.title = title
+    self.loading = loading
     self.action = action
     self.disabled = disabled
   }
@@ -61,13 +67,32 @@ struct BigButton: View {
     HStack {
       Spacer(minLength: BigButton.buttonHorizontalMargins)
       Button(action:self.action) {
-        Text(self.title)
-          .frame(maxWidth:.infinity)
+        
+        if self.loading {
+          
+          Circle()
+            .trim(from: 0, to: 0.7)
+            .stroke(Color.gray, lineWidth: 3)
+            .padding(.all, 1)
+            .frame(width: 23, height: 23)
+            .frame(maxWidth:.infinity)
+            .rotationEffect(Angle(degrees: preloaderState ? 360 : 0))
+            .animation(.linear(duration: 1)
+              .repeatForever(autoreverses: false), value: preloaderState)
+            .onAppear() {
+              self.preloaderState = true
+            }
+          
+        } else {
+          Text(self.title).frame(maxWidth:.infinity)
+        }
+      
       }
-      .buttonStyle(LargeButtonStyle(backgroundColor: backgroundColor,
-                                    textColor: textColor,
-                                    isDisabled: disabled))
-      .disabled(self.disabled)
+      .buttonStyle(LargeButtonStyle(
+        backgroundColor: backgroundColor,
+        textColor: textColor,
+        isDisabled: disabled))
+      .disabled(self.disabled || self.loading)
       Spacer(minLength: BigButton.buttonHorizontalMargins)
     }
     .frame(maxWidth:.infinity)
@@ -76,11 +101,23 @@ struct BigButton: View {
 
 
 #Preview {
-  BigButton(
-    title: "Invite a Friend",
-    backgroundColor: Color.white,
-    textColor: Color.black
-  ) {
-    print("Hello World")
+  VStack {
+    BigButton(
+      title: "Invite a Friend",
+      loading: true,
+      backgroundColor: Color.white,
+      textColor: Color.black
+    ) {
+      print("Hello World")
+    }
+    
+    BigButton(
+      title: "Invite a Friend",
+      loading: false,
+      backgroundColor: Color.white,
+      textColor: Color.black
+    ) {
+      print("Hello World")
+    }
   }
 }

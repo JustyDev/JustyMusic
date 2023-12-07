@@ -13,6 +13,10 @@ class Router: ObservableObject {
   enum Route: Hashable {
     case greeting
     case login
+    case registerStep1
+    case registerStep2
+    case registerStep3
+    case main
   }
   
   // Used to programatically control our navigation stack
@@ -21,11 +25,18 @@ class Router: ObservableObject {
   // Builds the views
   @ViewBuilder func view(for route: Route) -> some View {
     switch route {
-    case .login:
-      Auth()
-        .navigationBarBackButtonHidden()
-    case .greeting:
-      Greeting()
+      case .login:
+        Login()
+      case .registerStep1:
+        RegisterStep1()
+      case .registerStep2:
+        RegisterStep2()
+      case .registerStep3:
+        RegisterStep3()
+      case .greeting:
+        Greeting()
+      case .main:
+        Main()
         
     }
   }

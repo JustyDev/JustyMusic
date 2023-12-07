@@ -34,7 +34,7 @@ struct Greeting: View {
       Spacer()
       
       BigButton(
-        title: "Начать наслаждаться",
+        title: "Войти в аккаунт",
         backgroundColor: Color.white,
         textColor: Color.black
       ) {
@@ -42,9 +42,9 @@ struct Greeting: View {
       }
       
       Button(action: {
-        showingCredits.toggle()
+        router.navigateTo(.registerStep1)
       }) {
-        Text("Switch to English")
+        Text("Зарегистрироваться")
       }
       .foregroundColor(.white)
       .padding([.bottom], 10)
