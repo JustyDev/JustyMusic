@@ -20,22 +20,23 @@ struct Login: View {
   @FocusState private var isFocused: Bool
   
   @State var loading: Bool = false
+  @State var error: ResponseError? = nil
   
   var body: some View {
     VStack {
       VStack(alignment: .leading) {
         
         Text("С возвращением!")
-          .padding([.vertical], 5)
+          .padding([.vertical], 20)
           .font(Font.system(size: 37, weight: .heavy))
           .frame(maxWidth: .infinity, alignment: .leading)
         
-        Text("Введите ваш логин и пароль, чтобы войти")
+        Text("Введите ваш номер и пароль, чтобы войти")
           .multilineTextAlignment(.leading)
           .colorMultiply(.gray)
           .font(Font.system(size: 23, weight: .semibold))
           .frame(maxWidth: .infinity, alignment: .leading)
-        
+
       }
       .padding(.horizontal, 18)
       .padding(.vertical, 5)
@@ -65,8 +66,8 @@ struct Login: View {
         .padding(.bottom, 15)
       
       SecureField("Пароль", text: $password)
-        .keyboardType(.default)
-        .textContentType(.newPassword)
+        .keyboardType(.alphabet)
+        .textContentType(.password)
         .font(Font.system(size: 21, weight: .regular))
         .padding(.horizontal, 20)
         .padding(.vertical, 14)
@@ -93,19 +94,34 @@ struct Login: View {
       .padding(.horizontal, 17)
       .frame(maxWidth: .infinity, alignment: .leading)
       .padding(.vertical, 10)
+      .padding(.bottom, -4)
+      
+      if self.error != nil {
+        VStack(alignment: .leading) {
+          Text(self.error!.error.message)
+            .colorMultiply(.red)
+            .font(Font.system(size: 16, weight: .semibold))
+            .frame(maxWidth: .infinity, alignment: .leading)
+        }
+        .padding(.horizontal, 17)
+      }
       
       Spacer()
       
       BigButton(
-        title: "Завершить",
+        title: "Войти",
         loading: loading,
+        clickEffect: false,
         backgroundColor: Color.white,
         textColor: Color.black
       ) {
+        self.loading = true
         network.login(
           number,
           password
         ) { result in
+          self.error = nil
+          
           if case .success(let res) = result {
             let res = res as! UserSessionResponse
             
@@ -115,7 +131,9 @@ struct Login: View {
           }
           
           if case .failure(let error) = result {
-            print(error.error.message)
+            self.error = error
+            UINotificationFeedbackGenerator()
+              .notificationOccurred(.error)
           }
           
           self.loading = false
@@ -129,4 +147,6 @@ struct Login: View {
 
 #Preview {
   Login()
+    .environmentObject(NetworkManager())
+    .environmentObject(SessionManager())
 }

@@ -17,6 +17,8 @@ class Router: ObservableObject {
     case registerStep2
     case registerStep3
     case main
+    case account
+    case search
   }
   
   // Used to programatically control our navigation stack
@@ -25,6 +27,8 @@ class Router: ObservableObject {
   // Builds the views
   @ViewBuilder func view(for route: Route) -> some View {
     switch route {
+      case .greeting:
+        Greeting()
       case .login:
         Login()
       case .registerStep1:
@@ -33,11 +37,12 @@ class Router: ObservableObject {
         RegisterStep2()
       case .registerStep3:
         RegisterStep3()
-      case .greeting:
-        Greeting()
       case .main:
-        Main()
-        
+        MainTemplate()
+      case .account:
+        MainTemplate()
+      case .search:
+        MainTemplate()
     }
   }
   

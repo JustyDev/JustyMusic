@@ -10,26 +10,26 @@ import SwiftUI
 @main
 struct JustyMusicApp: App {
   
-  var network = NetworkManager()
   var sessionManager = SessionManager()
   
   var body: some Scene {
     WindowGroup {
       RouterView {
-        if sessionManager.isAuth() {
+        if !sessionManager.isAuth() {
           Greeting()
         } else {
-          Main()
+          MainTemplate()
         }
       }
-      .environmentObject(network)
+      .environmentObject(NetworkManager())
+      .environmentObject(SoundEngine())
     }.environmentObject(sessionManager)
   }
   
 }
 
 #Preview {
-  var sessionManager = SessionManager()
+  let sessionManager = SessionManager()
   
   sessionManager.clear()
   
@@ -48,12 +48,13 @@ struct JustyMusicApp: App {
 //  sessionManager.saveUserSession(userSession: userSession)
   
   return RouterView {
-    if sessionManager.isAuth() {
+    if !sessionManager.isAuth() {
       Greeting()
     } else {
-      Main()
+      MainTemplate()
     }
   }
   .environmentObject(NetworkManager())
+  .environmentObject(SoundEngine())
   .environmentObject(sessionManager)
 }

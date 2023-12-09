@@ -77,6 +77,7 @@ struct RegisterStep3: View {
       BigButton(
         title: "Завершить",
         loading: loading,
+        clickEffect: false,
         backgroundColor: Color.white,
         textColor: Color.black
       ) {

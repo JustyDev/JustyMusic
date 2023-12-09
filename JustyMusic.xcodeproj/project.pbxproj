@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		EA7461532B1CB247006B4E4A /* StringUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7461522B1CB247006B4E4A /* StringUtils.swift */; };
+		EAA735612B23D6910088ED9C /* SoundPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA735602B23D6910088ED9C /* SoundPlayer.swift */; };
+		EAA735642B249E6D0088ED9C /* Serialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA735632B249E6D0088ED9C /* Serialization.swift */; };
 		EABD9A822B20875D00AD57B6 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EABD9A812B20875D00AD57B6 /* NetworkManager.swift */; };
 		EABD9A852B20896900AD57B6 /* RegisterCodeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EABD9A842B20896900AD57B6 /* RegisterCodeResponse.swift */; };
 		EABD9A872B20D36F00AD57B6 /* ResponseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EABD9A862B20D36F00AD57B6 /* ResponseError.swift */; };
@@ -18,8 +20,13 @@
 		EABD9A922B214C9300AD57B6 /* RegisterStep3.swift in Sources */ = {isa = PBXBuildFile; fileRef = EABD9A912B214C9300AD57B6 /* RegisterStep3.swift */; };
 		EABE1DE22B22399400EED6EE /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EABE1DE12B22399400EED6EE /* SessionManager.swift */; };
 		EABE1DE42B223BD200EED6EE /* IntUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = EABE1DE32B223BD200EED6EE /* IntUtils.swift */; };
-		EABE1DE72B223FC400EED6EE /* Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = EABE1DE62B223FC400EED6EE /* Main.swift */; };
+		EABE1DE72B223FC400EED6EE /* MainTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EABE1DE62B223FC400EED6EE /* MainTemplate.swift */; };
 		EABE1DE92B2246B400EED6EE /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = EABE1DE82B2246B400EED6EE /* Login.swift */; };
+		EABE1DEB2B23593900EED6EE /* Preloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = EABE1DEA2B23593800EED6EE /* Preloader.swift */; };
+		EABE1DF02B235D4100EED6EE /* Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = EABE1DEF2B235D4100EED6EE /* Main.swift */; };
+		EABE1DF32B235F1F00EED6EE /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = EABE1DF22B235F1F00EED6EE /* Account.swift */; };
+		EABE1DF52B2380A400EED6EE /* SoundEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = EABE1DF42B2380A400EED6EE /* SoundEngine.swift */; };
+		EABE1DF92B23BCD000EED6EE /* Audio.swift in Sources */ = {isa = PBXBuildFile; fileRef = EABE1DF82B23BCD000EED6EE /* Audio.swift */; };
 		EACBED9B2B1B9C7C003C7890 /* Greeting.swift in Sources */ = {isa = PBXBuildFile; fileRef = EACBED9A2B1B9C7C003C7890 /* Greeting.swift */; };
 		EACBEDA02B1B9CF1003C7890 /* BigButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EACBED9F2B1B9CF1003C7890 /* BigButton.swift */; };
 		EACBEDA62B1BBA0A003C7890 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = EACBEDA52B1BBA0A003C7890 /* Router.swift */; };
@@ -32,6 +39,9 @@
 
 /* Begin PBXFileReference section */
 		EA7461522B1CB247006B4E4A /* StringUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringUtils.swift; sourceTree = "<group>"; };
+		EAA735602B23D6910088ED9C /* SoundPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundPlayer.swift; sourceTree = "<group>"; };
+		EAA735622B23F1BC0088ED9C /* JustyMusic.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = JustyMusic.entitlements; sourceTree = "<group>"; };
+		EAA735632B249E6D0088ED9C /* Serialization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Serialization.swift; sourceTree = "<group>"; };
 		EABD9A812B20875D00AD57B6 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		EABD9A842B20896900AD57B6 /* RegisterCodeResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterCodeResponse.swift; sourceTree = "<group>"; };
 		EABD9A862B20D36F00AD57B6 /* ResponseError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseError.swift; sourceTree = "<group>"; };
@@ -42,8 +52,14 @@
 		EABD9A912B214C9300AD57B6 /* RegisterStep3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterStep3.swift; sourceTree = "<group>"; };
 		EABE1DE12B22399400EED6EE /* SessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
 		EABE1DE32B223BD200EED6EE /* IntUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntUtils.swift; sourceTree = "<group>"; };
-		EABE1DE62B223FC400EED6EE /* Main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Main.swift; sourceTree = "<group>"; };
+		EABE1DE62B223FC400EED6EE /* MainTemplate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTemplate.swift; sourceTree = "<group>"; };
 		EABE1DE82B2246B400EED6EE /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
+		EABE1DEA2B23593800EED6EE /* Preloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preloader.swift; sourceTree = "<group>"; };
+		EABE1DEF2B235D4100EED6EE /* Main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Main.swift; sourceTree = "<group>"; };
+		EABE1DF22B235F1F00EED6EE /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
+		EABE1DF42B2380A400EED6EE /* SoundEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundEngine.swift; sourceTree = "<group>"; };
+		EABE1DF62B238E0300EED6EE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		EABE1DF82B23BCD000EED6EE /* Audio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Audio.swift; sourceTree = "<group>"; };
 		EACBED9A2B1B9C7C003C7890 /* Greeting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Greeting.swift; sourceTree = "<group>"; };
 		EACBED9F2B1B9CF1003C7890 /* BigButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigButton.swift; sourceTree = "<group>"; };
 		EACBEDA52B1BBA0A003C7890 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
@@ -69,13 +85,23 @@
 		EA7461512B1CB220006B4E4A /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				EABE1DF72B23BCC300EED6EE /* Extensions */,
 				EABD9A832B20894900AD57B6 /* Network */,
 				EA7461522B1CB247006B4E4A /* StringUtils.swift */,
 				EABD9A8C2B212C5D00AD57B6 /* Net.swift */,
 				EABE1DE12B22399400EED6EE /* SessionManager.swift */,
 				EABE1DE32B223BD200EED6EE /* IntUtils.swift */,
+				EABE1DF42B2380A400EED6EE /* SoundEngine.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		EAA7355D2B23D6610088ED9C /* Molecules */ = {
+			isa = PBXGroup;
+			children = (
+				EAA735602B23D6910088ED9C /* SoundPlayer.swift */,
+			);
+			path = Molecules;
 			sourceTree = "<group>";
 		};
 		EABD9A832B20894900AD57B6 /* Network */ = {
@@ -96,18 +122,45 @@
 			path = Configuration;
 			sourceTree = "<group>";
 		};
-		EABE1DE52B223FBB00EED6EE /* Main */ = {
+		EABE1DE52B223FBB00EED6EE /* Templates */ = {
 			isa = PBXGroup;
 			children = (
-				EABE1DE62B223FC400EED6EE /* Main.swift */,
+				EABE1DE62B223FC400EED6EE /* MainTemplate.swift */,
+			);
+			path = Templates;
+			sourceTree = "<group>";
+		};
+		EABE1DEE2B235D3900EED6EE /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				EABE1DEF2B235D4100EED6EE /* Main.swift */,
 			);
 			path = Main;
+			sourceTree = "<group>";
+		};
+		EABE1DF12B235F1300EED6EE /* Account */ = {
+			isa = PBXGroup;
+			children = (
+				EABE1DF22B235F1F00EED6EE /* Account.swift */,
+			);
+			path = Account;
+			sourceTree = "<group>";
+		};
+		EABE1DF72B23BCC300EED6EE /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				EABE1DF82B23BCD000EED6EE /* Audio.swift */,
+				EAA735632B249E6D0088ED9C /* Serialization.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		EACBED982B1B9C52003C7890 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				EABE1DE52B223FBB00EED6EE /* Main */,
+				EABE1DF12B235F1300EED6EE /* Account */,
+				EABE1DEE2B235D3900EED6EE /* Main */,
+				EABE1DE52B223FBB00EED6EE /* Templates */,
 				EACBEDA92B1BBD8A003C7890 /* Auth */,
 				EACBED992B1B9C5C003C7890 /* Greeting */,
 			);
@@ -125,6 +178,7 @@
 		EACBED9C2B1B9CCB003C7890 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				EAA7355D2B23D6610088ED9C /* Molecules */,
 				EACBED9E2B1B9CDB003C7890 /* Atoms */,
 			);
 			path = UI;
@@ -135,6 +189,7 @@
 			children = (
 				EACBED9F2B1B9CF1003C7890 /* BigButton.swift */,
 				EABD9A8A2B20E76500AD57B6 /* CodeField.swift */,
+				EABE1DEA2B23593800EED6EE /* Preloader.swift */,
 			);
 			path = Atoms;
 			sourceTree = "<group>";
@@ -169,6 +224,8 @@
 		EAFDE0A12B1B8CFE00A4BF7B /* JustyMusic */ = {
 			isa = PBXGroup;
 			children = (
+				EAA735622B23F1BC0088ED9C /* JustyMusic.entitlements */,
+				EABE1DF62B238E0300EED6EE /* Info.plist */,
 				EABD9A8E2B2145A700AD57B6 /* Configuration */,
 				EAFDE0B12B1B8DF500A4BF7B /* App */,
 				EAFDE0B02B1B8D5300A4BF7B /* Resources */,
@@ -276,18 +333,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EABE1DE72B223FC400EED6EE /* Main.swift in Sources */,
+				EAA735612B23D6910088ED9C /* SoundPlayer.swift in Sources */,
+				EABE1DF92B23BCD000EED6EE /* Audio.swift in Sources */,
+				EABE1DE72B223FC400EED6EE /* MainTemplate.swift in Sources */,
+				EABE1DF32B235F1F00EED6EE /* Account.swift in Sources */,
 				EACBEDA02B1B9CF1003C7890 /* BigButton.swift in Sources */,
 				EABD9A8B2B20E76500AD57B6 /* CodeField.swift in Sources */,
+				EABE1DF52B2380A400EED6EE /* SoundEngine.swift in Sources */,
 				EABE1DE42B223BD200EED6EE /* IntUtils.swift in Sources */,
 				EABD9A8D2B212C5D00AD57B6 /* Net.swift in Sources */,
 				EABD9A902B2145B400AD57B6 /* Config.swift in Sources */,
 				EACBED9B2B1B9C7C003C7890 /* Greeting.swift in Sources */,
 				EABD9A892B20DD8200AD57B6 /* RegisterStep2.swift in Sources */,
+				EAA735642B249E6D0088ED9C /* Serialization.swift in Sources */,
 				EACBEDA82B1BBC06003C7890 /* RouterView.swift in Sources */,
 				EACBEDAB2B1BBD9B003C7890 /* RegisterStep1.swift in Sources */,
 				EABD9A822B20875D00AD57B6 /* NetworkManager.swift in Sources */,
 				EABD9A922B214C9300AD57B6 /* RegisterStep3.swift in Sources */,
+				EABE1DF02B235D4100EED6EE /* Main.swift in Sources */,
+				EABE1DEB2B23593900EED6EE /* Preloader.swift in Sources */,
 				EACBEDA62B1BBA0A003C7890 /* Router.swift in Sources */,
 				EABE1DE92B2246B400EED6EE /* Login.swift in Sources */,
 				EAFDE0A32B1B8CFE00A4BF7B /* JustyMusicApp.swift in Sources */,
@@ -425,12 +489,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = JustyMusic/JustyMusic.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"JustyMusic/Resources/PreviewContent\"";
 				DEVELOPMENT_TEAM = SC737BGZU5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = JustyMusic/Info.plist;
+				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -460,12 +527,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = JustyMusic/JustyMusic.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"JustyMusic/Resources/PreviewContent\"";
 				DEVELOPMENT_TEAM = SC737BGZU5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = JustyMusic/Info.plist;
+				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

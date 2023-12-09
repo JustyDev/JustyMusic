@@ -13,13 +13,14 @@ struct LargeButtonStyle: ButtonStyle {
   let backgroundColor: Color
   let textColor: Color
   let isDisabled: Bool
+  let clickEffect: Bool
   
   func makeBody(configuration: Self.Configuration) -> some View {
-    let currentForegroundColor = isDisabled || configuration.isPressed ? textColor.opacity(0.6) : textColor
+    let currentForegroundColor = (clickEffect && (isDisabled || configuration.isPressed )) ? textColor.opacity(0.6) : textColor
     return configuration.label
       .padding()
       .foregroundColor(currentForegroundColor)
-      .background(isDisabled || configuration.isPressed ? backgroundColor.opacity(0.3) : backgroundColor)
+      .background((clickEffect && (isDisabled || configuration.isPressed )) ? backgroundColor.opacity(0.3) : backgroundColor)
     // This is the key part, we are using both an overlay as well as cornerRadius
       .cornerRadius(15)
       .overlay(
@@ -38,6 +39,7 @@ struct BigButton: View {
   var backgroundColor: Color
   var textColor: Color
   var loading: Bool
+  var clickEffect: Bool
   
   private let title: String
   private let action: () -> Void
@@ -45,12 +47,11 @@ struct BigButton: View {
   // It would be nice to make this into a binding.
   private let disabled: Bool
   
-  @State private var preloaderState: Bool = false
-  
   init(
     title: String,
     disabled: Bool = false,
     loading: Bool = false,
+    clickEffect: Bool = true,
     backgroundColor: Color = Color.green,
     textColor: Color = Color.white,
     action: @escaping () -> Void
@@ -59,6 +60,7 @@ struct BigButton: View {
     self.textColor = textColor
     self.title = title
     self.loading = loading
+    self.clickEffect = clickEffect
     self.action = action
     self.disabled = disabled
   }
@@ -69,20 +71,7 @@ struct BigButton: View {
       Button(action:self.action) {
         
         if self.loading {
-          
-          Circle()
-            .trim(from: 0, to: 0.7)
-            .stroke(Color.gray, lineWidth: 3)
-            .padding(.all, 1)
-            .frame(width: 23, height: 23)
-            .frame(maxWidth:.infinity)
-            .rotationEffect(Angle(degrees: preloaderState ? 360 : 0))
-            .animation(.linear(duration: 1)
-              .repeatForever(autoreverses: false), value: preloaderState)
-            .onAppear() {
-              self.preloaderState = true
-            }
-          
+          Preloader()
         } else {
           Text(self.title).frame(maxWidth:.infinity)
         }
@@ -91,7 +80,9 @@ struct BigButton: View {
       .buttonStyle(LargeButtonStyle(
         backgroundColor: backgroundColor,
         textColor: textColor,
-        isDisabled: disabled))
+        isDisabled: disabled,
+        clickEffect: clickEffect
+      ))
       .disabled(self.disabled || self.loading)
       Spacer(minLength: BigButton.buttonHorizontalMargins)
     }
@@ -114,6 +105,7 @@ struct BigButton: View {
     BigButton(
       title: "Invite a Friend",
       loading: false,
+      clickEffect: false,
       backgroundColor: Color.white,
       textColor: Color.black
     ) {

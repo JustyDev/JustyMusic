@@ -12,7 +12,7 @@ class SessionManager: ObservableObject {
   @Published var userSession: UserSession? = nil
   
   public func isAuth() -> Bool {
-    return self.userSession == nil
+    return self.userSession != nil
   }
   
   public func saveUserSession(userSession: UserSession) {
@@ -20,6 +20,12 @@ class SessionManager: ObservableObject {
     if let encodedUser = try?encoder.encode(userSession) {
       UserDefaults.standard.set(encodedUser, forKey: "user_session")
       self.userSession = userSession
+    }
+  }
+  
+  public func logOut() {
+    if self.isAuth() {
+      self.clear()
     }
   }
   
@@ -53,6 +59,7 @@ struct UserSessionResponse: Response {
 struct UserSession: Encodable, Decodable, Response {
   var id: Int
   var username: String
+  var number: String
   var session: Session
 }
 

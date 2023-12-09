@@ -13,7 +13,11 @@ struct RegisterStep2: View {
   @EnvironmentObject var router: Router
   
   @State private var code: String = ""
+  @State private var isError: Bool = false
   @State var loading = false
+  
+  @FocusState var isFocused
+  
   
   func onSubmit() {
     
@@ -24,8 +28,10 @@ struct RegisterStep2: View {
       if case .success = result { router.navigateTo(.registerStep3) }
       if case .failure = result {
         self.code = ""
+        self.isError = true
         UINotificationFeedbackGenerator()
           .notificationOccurred(.error)
+        self.isFocused = true
       }
       
       self.loading = false
@@ -55,13 +61,15 @@ struct RegisterStep2: View {
       HStack {
         
         
-        PinEntryView(pinLimit: 5, pinCode: $code)
+        PinEntryView(pinLimit: 5, isError: isError, pinCode: $code)
           .onChange(of: code) {
+            if self.$code.wrappedValue.count != 0 {
+              self.isError = false
+            }
             if self.$code.wrappedValue.count == 5 {
               onSubmit()
             }
           }
-          .disabled(self.loading)
     
       }
       .padding(.horizontal, 40)
@@ -72,6 +80,7 @@ struct RegisterStep2: View {
       BigButton(
         title: "Продолжить",
         loading: loading,
+        clickEffect: false,
         backgroundColor: Color.white,
         textColor: Color.black,
         action: onSubmit

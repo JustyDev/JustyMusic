@@ -49,7 +49,7 @@ struct Net {
             let decoded_success = try JSONDecoder().decode(decoder.self, from: data)
             handler(.success(decoded_success))
             
-          } catch let error {
+          } catch _ {
             
             do {
               let decodedError = try JSONDecoder().decode(ResponseError.self, from: data)
@@ -58,7 +58,7 @@ struct Net {
               handler(.failure(ResponseError.init(error.localizedDescription)))
             }
             
-            handler(.failure(ResponseError.init(error.localizedDescription)))
+            //handler(.failure(ResponseError.init(error.localizedDescription)))
           }
         }
       }

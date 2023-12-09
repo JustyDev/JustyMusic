@@ -3,8 +3,9 @@ import SwiftUI
 struct PinEntryView: View {
   
   var pinLimit: Int = 4
-  var isError: Bool = false
   var canEdit: Bool = true
+  var isError: Bool = false
+  
   @Binding var pinCode: String
   
   private var pins: [String] {
@@ -18,17 +19,13 @@ struct PinEntryView: View {
           .border(Color.black, width: 1)
           .frame(height: 60)
           .padding()
-          .onChange(of: pinCode) {
-            UIImpactFeedbackGenerator(style: .medium)
-              .impactOccurred()
-          }
+
       }
       .opacity(0)
       
       VStack {
         HStack(spacing: 32) {
           ForEach(0 ..< pinLimit) { item in
-            
             Text(item < pinCode.count ? pins[item] : "")
               .frame(width: 16, height: 16)
               .padding(.all, 13)
@@ -37,7 +34,7 @@ struct PinEntryView: View {
               .cornerRadius(15)
               .overlay() {
                 RoundedRectangle(cornerRadius: 15)
-                  .stroke(hexColor(hex: "#151515"), lineWidth: 2)
+                  .stroke(isError ? .red : hexColor(hex: "#151515"), lineWidth: 2)
               }
           }
           .frame(width: 24, height: 32) // We give a constant frame to avoid any layout movements when the state changes.
@@ -106,7 +103,6 @@ struct PinCodeTextField: UIViewRepresentable {
   }
 }
 
-/// A Utility view to view previews with a single Binding
 struct StatefulPreviewWrapper<Value, Content: View>: View {
   
   // MARK: - Properties
@@ -128,31 +124,35 @@ struct StatefulPreviewWrapper<Value, Content: View>: View {
 }
 
 #Preview {
-  Group {
+  
+  @State var isError: Bool = false
+  
+  return Group {
     StatefulPreviewWrapper("") {
-      PinEntryView(pinCode: $0)
-    }
-    .previewLayout(.sizeThatFits)
-    StatefulPreviewWrapper("12") {
-      PinEntryView(pinCode: $0)
+      PinEntryView(isError: false, pinCode: $0)
     }
     .previewLayout(.sizeThatFits)
     
-    StatefulPreviewWrapper("1333") {
+    StatefulPreviewWrapper("12") {
       PinEntryView(isError: true, pinCode: $0)
     }
     .previewLayout(.sizeThatFits)
-    
-    StatefulPreviewWrapper("12") {
-      PinEntryView(pinLimit: 6, pinCode: $0)
-    }
-    .previewLayout(.sizeThatFits)
-    
-    StatefulPreviewWrapper("12") {
-      PinEntryView(pinLimit: 6, pinCode: $0)
-    }
-    .background(Color.black)
-    .previewLayout(.sizeThatFits)
-    .colorScheme(.dark)
+//    
+//    StatefulPreviewWrapper("1333") {
+//      PinEntryView(isError: $isError as Bool, pinCode: $0)
+//    }
+//    .previewLayout(.sizeThatFits)
+//    
+//    StatefulPreviewWrapper("12") {
+//      PinEntryView(pinLimit: 6, pinCode: $0)
+//    }
+//    .previewLayout(.sizeThatFits)
+//    
+//    StatefulPreviewWrapper("12") {
+//      PinEntryView(isError: $isError as Bool, pinLimit: 6, pinCode: $0)
+//    }
+//    .background(Color.black)
+//    .previewLayout(.sizeThatFits)
+//    .colorScheme(.dark)
   }
 }

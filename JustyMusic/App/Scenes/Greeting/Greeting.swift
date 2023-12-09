@@ -54,7 +54,7 @@ struct Greeting: View {
         Text("This app was brought to you by Hacking with Swift")
           .presentationDetents([.large, .large])
       }
-    }
+    }.navigationBarBackButtonHidden()
     
   }
 }
