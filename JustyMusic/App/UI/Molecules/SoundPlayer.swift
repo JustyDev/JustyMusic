@@ -6,10 +6,14 @@
 //
 
 import SwiftUI
+import AVFoundation
 
 struct SoundPlayer: View {
   
   @EnvironmentObject var sEngine: SoundEngine
+  
+  @State private var dragAmount = CGSize.zero
+  @State private var isFully = false
   
   var body: some View {
     
@@ -25,28 +29,26 @@ struct SoundPlayer: View {
           .cornerRadius(15)
           .padding(.trailing, 5)
         
-        VStack {
+        VStack(alignment: .leading) {
           Text(sEngine.track!.title)
             .bold()
-            .frame(maxWidth: .infinity, alignment: .leading)
           
-          Text(sEngine.track!.artist.name)
+          Text(sEngine.track!.performers)
             .colorMultiply(.gray)
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .font(Font.system(size: 15))
+            .frame(alignment: .leading)
         }
         
         Spacer()
         
         Button(action: {
-          if sEngine.track!.liked {
+          if sEngine.track!.is_liked {
             sEngine.track!.dislike()
           } else {
             sEngine.track!.like()
           }
         }) {
-          Image(systemName: sEngine.track!.liked ? "heart.fill" : "heart")
-            .foregroundColor(sEngine.track!.liked ? .red : .gray)
+          Image(systemName: sEngine.track!.is_liked ? "heart.fill" : "heart")
+            .foregroundColor(sEngine.track!.is_liked ? .red : .gray)
             .font(Font.system(size: 20))
             .padding(10)
             .padding(.trailing, -5)
@@ -66,10 +68,59 @@ struct SoundPlayer: View {
             .padding(.leading, -5)
         }
       }
-      
       .padding(.vertical, 10)
       .padding(.horizontal, 15)
-      //.background(hexColor(hex: "#101010"))
+      .contentShape(Rectangle())
+      .onTapGesture {
+        self.isFully = true
+      }
+      .presentationBackground(.thinMaterial)
+      .simultaneousGesture(
+        DragGesture(minimumDistance: 5)
+          .onChanged { value in
+            let height = value.translation.height
+            if height > 0 {
+              dragAmount = CGSize(width: 0, height: height <= 50 ? height : 50)
+            }
+          }
+          .onEnded { value in
+            
+            if value.translation.height < -50 {
+              self.isFully = true
+            }
+            
+            if value.translation.height > 50 {
+              sEngine.stop()
+              UIImpactFeedbackGenerator(style: .medium).impactOccurred()
+            }
+            
+            dragAmount = .zero
+          }
+      )
+      .offset(dragAmount)
+      .animation(.linear(duration: 0.1), value: dragAmount)
+      .fullScreenSheet(isPresented: $isFully) {
+        FullScreenPlayer().environmentObject(sEngine)
+      }
+    }
+  }
+}
+
+struct FullScreenPlayer: View {
+  
+  @EnvironmentObject var sEngine: SoundEngine
+  
+  var body: some View {
+    ZStack(alignment: .top) {
+      RoundedRectangle(cornerRadius: 40)
+        .fill(hexColor(hex: "#101010"))
+      
+      VStack {
+        Text(String(sEngine.track?.player?.currentTime().seconds ?? 0))
+          .font(.largeTitle)
+          .padding(.all, 30)
+          .multilineTextAlignment(.center)
+      }
     }
   }
 }
@@ -80,18 +131,20 @@ struct SoundPlayer: View {
   
   sEngine.start(
     Track(
-      id: 1,
-      title: "Розовый вечер",
-      source: "https://justydev.ru/song.mp3",
-      liked: false,
-      artist: SongArtist(
-        id: 1,
-        name: "Amirchik"
-      )
-    )
+      id: 2,
+      title: "Survivor",
+      performers: "Tim Haperlin",
+      is_explicit: false,
+      is_liked: true
+    ),
+    false
   )
   
   return VStack {
+    Spacer()
     SoundPlayer()
+    Rectangle()
+      .opacity(0)
+      .frame(width: .infinity, height: 70)
   }.environmentObject(sEngine)
 }

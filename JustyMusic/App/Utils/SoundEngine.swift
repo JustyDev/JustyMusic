@@ -16,7 +16,7 @@ class SoundEngine: ObservableObject {
   var queue: [Track] = []
   var history: [Track] = []
   
-  @Published var track: Track?
+  @MainActor @Published var track: Track?
   @Published var isPlaying: Bool = false
   
   init() {
@@ -30,23 +30,31 @@ class SoundEngine: ObservableObject {
     }
   }
   
-  func start(_ song: Track) {
-    self.track = song
+  @MainActor func start(_ track: Track, _ start: Bool = true) {
     
-    NotificationCenter.default
-      .addObserver(
-        self,
-        selector: #selector(playerDidFinishPlaying),
-        name: .AVPlayerItemDidPlayToEndTime,
-        object: self.track?.player?.currentItem
-      )
+    self.isPlaying = false
+  
+    self.track = track
+    
+    Task {
+      self.track!.prepare()
+      
+      if start {
+        self.play()
+      }
+    }
+  }
+  
+  @MainActor func stop() {
+    self.pause()
+    self.track = nil
   }
   
   @objc func playerDidFinishPlaying(note: NSNotification) {
     print("Audio Finished")
   }
   
-  func play() {
+  @MainActor func play() {
     if self.isPlaying { return }
     
     self.track?.player?.play()
@@ -56,19 +64,19 @@ class SoundEngine: ObservableObject {
     self.isPlaying = true
   }
   
-  func pause() {
+  @MainActor func pause() {
     if !self.isPlaying { return }
     
     self.track?.player?.pause()
     self.isPlaying = false
   }
   
-  func setupNowPlaying() {
+  @MainActor func setupNowPlaying() {
     // Define Now Playing Info
     
     var nowPlayingInfo = [String : Any]()
     nowPlayingInfo[MPMediaItemPropertyTitle] = self.track?.title
-    nowPlayingInfo[MPMediaItemPropertyArtist] = self.track?.artist.name
+    nowPlayingInfo[MPMediaItemPropertyArtist] = self.track?.performers
     
     nowPlayingInfo[MPMediaItemPropertyPlaybackDuration] = self.track?.player?.currentItem?.asset.duration.seconds
     
@@ -80,7 +88,7 @@ class SoundEngine: ObservableObject {
     MPNowPlayingInfoCenter.default().playbackState = .playing
   }
   
-  func setupRemoteCommandCenter() {
+  @MainActor func setupRemoteCommandCenter() {
     let commandCenter = MPRemoteCommandCenter.shared();
     commandCenter.playCommand.isEnabled = true
     commandCenter.playCommand.addTarget {event in
@@ -111,21 +119,23 @@ class SoundEngine: ObservableObject {
 struct Track: Decodable, Encodable {
   var id: Int
   var title: String
-  var source: String
-  var liked: Bool
-  var artist: SongArtist
+  var performers: String
+  var is_explicit: Bool
+  var is_liked: Bool
   
   @Transiant
   var player: AVPlayer?
   
-  init(id: Int, title: String, source: String, liked: Bool, artist: SongArtist) {
+  init(id: Int, title: String, performers: String, is_explicit: Bool, is_liked: Bool) {
     self.id = id
     self.title = title
-    self.source = source
-    self.liked = liked
-    self.artist = artist
-    
-    guard let url_object = URL(string: self.source) else { fatalError("Missing URL") }
+    self.performers = performers
+    self.is_explicit = is_explicit
+    self.is_liked = is_liked
+  }
+  
+  mutating func prepare() {
+    guard let url_object = URL(string: Config.API_URL + "tracks/listen?track_id=" + String(self.id)) else { fatalError("Missing URL") }
     
     let playerItem = AVPlayerItem(url: url_object)
     
@@ -133,19 +143,14 @@ struct Track: Decodable, Encodable {
   }
   
   mutating func dislike() -> Void {
-    self.liked = false
+    self.is_liked = false
     
     UIImpactFeedbackGenerator(style: .medium).impactOccurred()
   }
   
   mutating func like() -> Void {
-    self.liked = true
+    self.is_liked = true
     
     UIImpactFeedbackGenerator(style: .medium).impactOccurred()
   }
-}
-
-struct SongArtist: Decodable, Encodable {
-  var id: Int
-  var name: String
 }

@@ -16,22 +16,36 @@ struct Net {
   static func request(
     url: String,
     url_prefix: String = Config.API_URL,
-    method: String = "POST",
+    method: String = "GET",
     data: [String: Any] = [:],
     decoder: Response.Type,
     then handler: @escaping (Result<Response, ResponseError>) -> Void
   ) {
     
-    guard let url_object = URL(string: url_prefix + url) else { fatalError("Missing URL") }
+    var components = URLComponents(string: url_prefix + url)!
     
-    let req = NSMutableURLRequest(url: url_object)
+    if method == "GET" {
+      components.queryItems = data.map { (key, value) in
+        URLQueryItem(name: key, value: value as? String)
+      }
+    }
+    
+    let req = NSMutableURLRequest(url: components.url!)
     req.httpMethod = method
     
-    req.httpBody = try? JSONSerialization.data(withJSONObject: data, options: .prettyPrinted)
+    if method != "GET" {
+      req.httpBody = try? JSONSerialization.data(withJSONObject: data, options: .prettyPrinted)
+    }
+    
+    let session_key = SessionManager().userSession?.session.key
     
     //HTTP Headers
     req.addValue("application/json", forHTTPHeaderField: "Content-Type")
     req.addValue("application/json", forHTTPHeaderField: "Accept")
+    
+    if session_key != nil {
+      req.addValue(session_key!, forHTTPHeaderField: "AccessToken")
+    }
     
     URLSession.shared.dataTask(with: req as URLRequest) { (data, response, error) in
       if let error = error {

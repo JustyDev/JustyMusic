@@ -18,6 +18,7 @@ class NetworkManager: ObservableObject {
   func sendRegisterCode(_ number: String, then handler: @escaping Net.Handler) {
     Net.request(
       url: "auth/register",
+      method: "GET",
       data: [
         "phone_number": number
       ],
@@ -36,7 +37,7 @@ class NetworkManager: ObservableObject {
   
   func silentCheckCode(_ number: String, _ code: String, then handler: @escaping Net.Handler) {
     Net.request(
-      url: "auth/register.silent",
+      url: "auth/register",
       method: "PUT",
       data: [
         "phone_number": number,
@@ -56,7 +57,8 @@ class NetworkManager: ObservableObject {
   
   func register(_ number: String, _ code: String, _ password: String, _ username: String, then handler: @escaping Net.Handler) {
     Net.request(
-      url: "auth/register.complete",
+      url: "auth/register",
+      method: "POST",
       data: [
         "phone_number": number,
         "password": password,
@@ -71,11 +73,24 @@ class NetworkManager: ObservableObject {
   func login(_ number: String, _ password: String, then handler: @escaping Net.Handler) {
     Net.request(
       url: "auth/login",
+      method: "POST",
       data: [
         "phone_number": number,
         "password": password
       ],
       decoder: UserSessionResponse.self,
+      then: handler
+    )
+  }
+  
+  func tracksByPlaylist(_ playlist_id: Int, then handler: @escaping Net.Handler) {
+    Net.request(
+      url: "tracks/byPlaylist",
+      method: "GET",
+      data: [
+        "playlist_id": playlist_id
+      ],
+      decoder: UserTracksByPlaylistResponse.self,
       then: handler
     )
   }

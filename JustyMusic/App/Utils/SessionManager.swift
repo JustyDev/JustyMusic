@@ -70,3 +70,19 @@ struct Session: Encodable, Decodable {
   var created_time: Int
   var last_active: Int
 }
+
+struct UserTracksByPlaylistResponse: Response {
+  var response: UserTracksByPlaylist
+}
+
+struct UserTracksByPlaylist: Encodable, Decodable, Response {
+  var playlist: PlaylistInfo
+  var tracks: [Track]
+}
+
+struct PlaylistInfo: Encodable, Decodable, Response {
+  var id: Int
+  var creator_id: Int?
+  var title: String?
+  var description: String?
+}

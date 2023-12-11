@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EA0254032B25EC970072CC7E /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA0254022B25EC970072CC7E /* View.swift */; };
 		EA7461532B1CB247006B4E4A /* StringUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7461522B1CB247006B4E4A /* StringUtils.swift */; };
 		EAA735612B23D6910088ED9C /* SoundPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA735602B23D6910088ED9C /* SoundPlayer.swift */; };
 		EAA735642B249E6D0088ED9C /* Serialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA735632B249E6D0088ED9C /* Serialization.swift */; };
@@ -38,6 +39,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EA0254022B25EC970072CC7E /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		EA7461522B1CB247006B4E4A /* StringUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringUtils.swift; sourceTree = "<group>"; };
 		EAA735602B23D6910088ED9C /* SoundPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundPlayer.swift; sourceTree = "<group>"; };
 		EAA735622B23F1BC0088ED9C /* JustyMusic.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = JustyMusic.entitlements; sourceTree = "<group>"; };
@@ -151,6 +153,7 @@
 			children = (
 				EABE1DF82B23BCD000EED6EE /* Audio.swift */,
 				EAA735632B249E6D0088ED9C /* Serialization.swift */,
+				EA0254022B25EC970072CC7E /* View.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -347,6 +350,7 @@
 				EABD9A892B20DD8200AD57B6 /* RegisterStep2.swift in Sources */,
 				EAA735642B249E6D0088ED9C /* Serialization.swift in Sources */,
 				EACBEDA82B1BBC06003C7890 /* RouterView.swift in Sources */,
+				EA0254032B25EC970072CC7E /* View.swift in Sources */,
 				EACBEDAB2B1BBD9B003C7890 /* RegisterStep1.swift in Sources */,
 				EABD9A822B20875D00AD57B6 /* NetworkManager.swift in Sources */,
 				EABD9A922B214C9300AD57B6 /* RegisterStep3.swift in Sources */,
